@@ -9,9 +9,13 @@
 #include <climits>
 
 // ensure the distribution is more evenly spread
-// NB: this function assumes you've seeded the PRNG
 inline unsigned rand_range(unsigned min, unsigned max)
 {
 	return min + std::rand() / (RAND_MAX / (max - min + 1) + 1);
+}
+
+inline void clean_up(bool err = false)
+{
+	std::exit(err ? EXIT_FAILURE : EXIT_SUCCESS);
 }
 #endif

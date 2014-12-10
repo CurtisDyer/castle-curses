@@ -7,11 +7,17 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 #include "weapons.h"
 
-/** for now, a very limited character class */
+enum CharType { PLAYER, NPC };
+
+
 class Character {
+	void init();
+
 protected:
 	std::string name;
 	Weapon weap;
@@ -20,54 +26,57 @@ protected:
 	int hp;
 	int str;
 
+	CharType type;
 	unsigned state;		// bit set
 
 public:
-	// state modifier flags
+	// option flags
 	static const unsigned INIT	= 0u;
 	static const unsigned HIT	= 1 << 0u;
 	static const unsigned CRIT	= 1 << 1u;
 	static const unsigned MISS	= 1 << 2u;
 
-	// constructors
 	Character();
-	Character(std::string n, Weapon& w, int hp, int str);
+	Character(std::string n, Weapon w, int hp, int str);
 
 	friend std::ostream& operator<< (std::ostream& o, Character const& ch);
 
-	// stat behaviors
 	int gethp() const;
 	unsigned getflags() const;
+	Weapon getweapon() const;
 	bool is_dead() const;
+	std::string getname() const;
+	CharType gettype() const;
 
-	virtual void addhp(int amt);
+	void addhp(int amt);
+	void setname(std::string& n);
+	void setweapon(Weapon w);
 	void setflags(unsigned f);
 	void clearflags(unsigned f);
+	void settype(const CharType& t);
 
 	// moves
-	virtual void attack(Character* ch);
+	virtual void attack(Character* ch, bool retaliate = true);
 };
 
 
-/**
- * The player character
- */
+// The player character
 struct Player : public Character {
 	Player();
-	Player(std::string n, Weapon w, int hp);
+	Player(std::string n, Weapon w, int hp, int str);
 
-	void attack(Character* ch);
+	void attack(Character* ch, bool retaliate = true);
 };
 
 
-/**
+/*
  * NPCs - for now, the main difference is that their attacks don't
  * crit
  */
 struct NPCharacter : public Character {
 	NPCharacter();
-	NPCharacter(std::string n, Weapon w, int hp);
+	NPCharacter(std::string n, Weapon w, int hp, int str);
 
-	void attack(Character* ch);
+	void attack(Character* ch, bool retaliate = true);
 };
 #endif

@@ -18,7 +18,8 @@
  * @scope visible within this translation unit only
  * @return the current position in input sequence or `-1' upon failure
  */
-static std::streampos gettoken(const std::string& s, std::string& t, char delim) {
+static std::streampos gettoken(const std::string& s, std::string& t, char delim)
+{
 	std::stringstream ss(s);
 	std::string tok;
 	std::getline(ss, tok, delim);

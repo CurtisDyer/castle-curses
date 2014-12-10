@@ -4,39 +4,41 @@
 
 #include <iostream>
 #include <string>
+#include <cstdio>
 
 #include "messages.h"
+#include "errmessages.h"
 #include "command.h"
 #include "level.h"
+#include "utils.h"
+#include "characters.h"
 
 /*
  * help command output
  */
 struct Help : public Command {
-	Help() : name("help"), Command() {};
-	Help(bool argv, bool reqd) : Command(argv, reqd) {};
+	Help() : Command() {};
+	Help(std::string n, bool argv, bool reqd) : Command(n, argv, reqd) {};
 
-	void dispatch(Character* c, const std::vector<std::string>& args)
+	void dispatch(Character* c, Level* lvl, const std::vector<std::string>& args)
 	{
-		cmd_message(HelpMessages::table["help"]);
+		std::cout << lvl->getmessage("help") << '\n';
 	};
 
-protected:
-	std::string name;
 };
 
 /*
  * player character attack command
  */
 struct Attack : public Command {
-	Help() : name("attack"), Command() {};
-	Help(bool argv, bool reqd) : Command(argv, reqd) {};
+	Attack() : Command() {};
+	Attack(std::string n, bool argv, bool reqd) : Command(n, argv, reqd) {};
 
 	void dispatch(Character* c, Level* lvl, const std::vector<std::string>& args)
 	{
 		if (!args.empty()) {
-			NPCharacter npc = lvl->getmob(args[0]);
-			c->attack(&npc);
+			Character *npc = lvl->getchar(args[0]);
+			c->attack(npc);
 		}
 	};
 };
@@ -45,17 +47,35 @@ struct Attack : public Command {
  * look command - gives player information about the level
  */
 struct Look : public Command {
-	Help() : name("look"), Command() {};
-	Help(bool argv, bool reqd) : Command(argv, reqd) {};
+	Look() : Command() {};
+	Look(std::string n, bool argv, bool reqd) : Command(n, argv, reqd) {};
 
 	void dispatch(Character* c, Level* lvl, const std::vector<std::string>& args)
 	{
-		std::string lvlname = lvl->getname();
-		std::string k = lvlname + (args.empty() ? "_default" : args[0]);
+		std::string look = lvl->getmessage(args.empty() ? "default" : args[0]);
 
-		if (LookMessages::table.count(k))
-			cmd_message(LookMessages::table[k]);
+		if (!look.empty()) {
+			std::cout << look;
+			Character *enemy;
+			while ((enemy = lvl->nextchar()) != NULL) {
+				if (enemy->gettype() == NPC)
+					printf(lvl->getmessage("enemy_item").c_str(), enemy->getname().c_str());
+			}
+		}
 		else
-			cmd_message(ErrorMessages::table["msg_not_found"]);
+			errormsg("msg_not_found");
+	};
+};
+
+/*
+ * exit command
+ */
+struct Exit : public Command {
+	Exit() : Command() {};
+	Exit(std::string n) : Command(n) {};
+
+	void dispatch(Character* c, Level* lvl, const std::vector<std::string>& args)
+	{
+		clean_up();
 	};
 };

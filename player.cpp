@@ -6,6 +6,13 @@
 
 #include "characters.h"
 
-Player::Player() : Character() {}
+Player::Player() : Character()
+{
+	type = PLAYER;
+}
+
 Player::Player(std::string n, Weapon w, int hp, int str)
-	: Character(n, w, hp, str) {}
+	: Character(n, w, hp, str)
+{
+	type = PLAYER;
+}
