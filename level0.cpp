@@ -49,16 +49,21 @@ static void setup_lang(Level& lvl)
 		"antechamber, you spot the fabled MacGuffin Crystal. It looks like this\n"
 		"ghoul is going to have to die.\n\n";
 
-	tbl["retaliate"] = "%s is attacks you!\n";
+	tbl["retaliate"] = "%s ATTACKS you for %d damage!\n";
 
 	tbl["attack_target"] = "You ATTACK %s for %d damage!\n";
 	tbl["crit_target"] = "You CRIT %s for %d damage!! (Note the extra exclamation mark.)\n";
+	tbl["keep_attacking"] = "%s is still alive! Keep using `attack' until it's dead!\n";
 
 	tbl["target_dead"] = "You killed %s.\n";
 	tbl["player_dead"] = "You were slain by %s.\n";
 
 	tbl["attackable"] = "Attackable Enemies:\n";
 	tbl["enemy_item"] = "  - %s\n";
+
+	tbl["win"] = "You won!\n";
+	tbl["lose"] = "You lost!\n";
+
 	tbl["prompt"] = "%s> ";
 
 	lvl.initmessages(tbl);
@@ -106,6 +111,7 @@ void run_level0(Character *player)
 	ctable["exit"] = &exit;
 	ctable["quit"] = &exit; // alias for exit
 
+	help.dispatch(player, &intro);
 	do {
 		std::printf(intro.getmessage("prompt").c_str(), "Introduction");
 		std::cout << std::flush;
@@ -117,5 +123,5 @@ void run_level0(Character *player)
 				c->dispatch(player, &intro);
 			}
 		}
-	} while (std::cin.good() && !player->is_dead());
+	} while (std::cin.good() && !intro.is_gameover());
 }

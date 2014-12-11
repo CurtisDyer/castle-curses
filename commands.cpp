@@ -37,28 +37,26 @@ struct Attack : public Command {
 	Attack() : Command() {};
 	Attack(std::string n, bool argv = true, bool reqd = true) : Command(n, argv, reqd) {};
 
-	void dispatch(Character* c, Level* lvl)
-	{
+	void dispatch(Character* c, Level* lvl) {
 		if (!args.empty()) {
 			Character *npc = lvl->getchar(args[0]);
-			int dmg = c->attack(npc, false);
+
+			c->setflags(0);
+			npc->setflags(0);
 
 			const char *pname = c->getname().c_str();
 			const char *npcname = npc->getname().c_str();
 			const char *stats = lvl->getmessage("stats").c_str();
 
-			printf(stats, pname, c->gethp(), c->getmaxhp());
-			printf(stats, npcname, npc->gethp(), npc->getmaxhp());
-			std::cout << '\n';
-
+			int dmg = c->attack(npc);
 			std::string k = (npc->getflags() & Character::CRIT) ? "crit_target" : "attack_target";
-			printf(lvl->getmessage(k).c_str(), args[0].c_str(), dmg);
+			printf(lvl->getmessage(k).c_str(), npcname, dmg);
 
 			// retaliatory attack
 			if (!npc->is_dead()) {
-				printf(lvl->getmessage("retaliate").c_str(), npcname);
-				dmg = npc->attack(c, false);
-				printf(lvl->getmessage("attack_target").c_str(), pname);
+				dmg = npc->attack(c);
+				printf(lvl->getmessage("retaliate").c_str(), npcname, dmg);
+				printf(lvl->getmessage("keep_attacking").c_str(), npcname);
 			}
 			std::cout << '\n';
 
@@ -70,40 +68,41 @@ struct Attack : public Command {
 				const char *who;
 				const char *tar;
 				if (npc->is_dead()) {
+					lvl->endgame(true);
 					who = lvl->getmessage("target_dead").c_str();
 					tar = npcname;
 				}
 				else {
+					lvl->endgame(false);
 					who = lvl->getmessage("player_dead").c_str();
 					tar = pname;
 				}
 				printf(who, tar);
 			}
+			args.clear();
 		}
 	};
 };
 
 /*
  * look command - gives player information about the level
- * FIXME
  */
 struct Look : public Command {
 	Look() : Command() {};
 	Look(std::string n, bool argv = true, bool reqd = false) : Command(n, argv, reqd) {};
 
-	void dispatch(Character* c, Level* lvl)
-	{
-		if (args.empty()) {
-			std::cout << lvl->getmessage("default");
+	void dispatch(Character* c, Level* lvl) {
+		std::cout << lvl->getmessage(args.empty() ? "default" : args[0]);
+
+		std::cout << lvl->getmessage("attackable");
+
+		Character *enemy;
+		lvl->resetchar();
+		while ((enemy = lvl->nextchar()) != NULL) {
+			if (enemy->gettype() == NPC)
+				printf(lvl->getmessage("enemy_item").c_str(), enemy->getname().c_str());
 		}
-		else {
-			Character *enemy;
-			lvl->resetchar();
-			while ((enemy = lvl->nextchar()) != NULL) {
-				if (enemy->gettype() == NPC)
-					printf(lvl->getmessage("enemy_item").c_str(), enemy->getname().c_str());
-			}
-		}
+		args.clear();
 	};
 };
 

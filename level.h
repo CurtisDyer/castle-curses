@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 
 #include "messages.h"
 #include "characters.h"
@@ -15,7 +16,6 @@
 class Level {
 	std::string name;
 	std::string desc;
-	unsigned id_;
 
 	std::vector<Character*> chars;
 	std::vector<Weapon*> weaps;
@@ -25,21 +25,32 @@ class Level {
 
 	StringTable tbl;
 
+	std::pair<bool,bool> gameover;
+
+	unsigned id_;
+
 public:
 	Level() : id_(0)
 	{
 		char_iter = chars.begin();
 		weap_iter = weaps.begin();
+		gameover = std::make_pair(false, false);
 	};
 	Level(std::string n, std::string d, unsigned id)
 		: name(n), desc(d), id_(id)
 	{
 		char_iter = chars.begin();
 		weap_iter = weaps.begin();
+		gameover = std::make_pair(false, false);
 	};
 
 	std::string getname() const { return name; };
 	void setname(std::string n) { name = n; };
+
+	bool is_gameover() const { return gameover.first; };
+	void endgame(bool win = true) {
+		gameover = std::make_pair(true, win);
+	};
 
 	std::string getmessage(std::string k)
 	{

@@ -16,6 +16,7 @@ inline unsigned rand_range(unsigned min, unsigned max)
 
 inline void clean_up(bool err = false)
 {
+	std::cout << "\nThanks for playing!\n";
 	std::exit(err ? EXIT_FAILURE : EXIT_SUCCESS);
 }
 #endif

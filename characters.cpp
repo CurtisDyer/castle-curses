@@ -98,7 +98,7 @@ void Character::settype(const CharType& t)
  * @param we need to avoid a recursive chain of calls, so we pass a
  * parameter to determine when an attack sequence should end
  */
-int Character::attack(Character* ch, bool retaliate)
+int Character::attack(Character* ch)
 {
 	unsigned roll = rand_range(1u, 100u);
 	unsigned critchance = 15u;
@@ -113,9 +113,6 @@ int Character::attack(Character* ch, bool retaliate)
 		}
 		ch->addhp(-dmg);
 	}
-
-	if (retaliate)
-		ch->attack(this, false);
 
 	return dmg;
 }

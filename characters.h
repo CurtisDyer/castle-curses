@@ -65,7 +65,7 @@ public:
 	void settype(const CharType& t);
 
 	// moves
-	virtual int attack(Character* ch, bool retaliate = true);
+	virtual int attack(Character* ch);
 };
 
 
@@ -88,6 +88,8 @@ struct NPCharacter : public Character {
 
 	~NPCharacter();
 
-	int attack(Character* ch, bool retaliate = false);
+	int attack(Character* ch);
 };
+
+std::ostream& operator<< (std::ostream& o, Character const& ch);
 #endif
