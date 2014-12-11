@@ -3,14 +3,18 @@
  */
 
 #include <iostream>
+#include <cstdio>
 #include <string>
+
+#include "level0.h"
 
 #include "messages.h"
 #include "errmessages.h"
 #include "level.h"
 #include "characters.h"
-#include "command.h"
 
+#include "command.h"
+#include "commands.cpp" // TODO: separate sub-command declarations and definitions
 
 static void setup_lang(Level& lvl)
 {
@@ -35,13 +39,23 @@ static void setup_lang(Level& lvl)
 
 		"\"Was it...feeding?\" you absently think out loud.\n\n";
 
+	tbl["stats"] = "%s: (%d / %d)\n";
+
 	tbl["ghoul"] =
 		"Your steady, well-trained hand reaches toward your blade. You realize\n"
 		"now the rumors you heard aren't merely the ravings of the\n"
 		"superstitious drunkards back in town. Unfortunately, this thing is\n"
-		"standing between you and a nice payday. Beyond dilapidated antechamber,\n"
-		"you spot fabled MacGuffin Crystal. It looks like this ghoul is going\n"
-		"to have to die.\n\n";
+		"standing between you and a nice payday. Beyond the dilapidated\n"
+		"antechamber, you spot the fabled MacGuffin Crystal. It looks like this\n"
+		"ghoul is going to have to die.\n\n";
+
+	tbl["retaliate"] = "%s is attacks you!\n";
+
+	tbl["attack_target"] = "You ATTACK %s for %d damage!\n";
+	tbl["crit_target"] = "You CRIT %s for %d damage!! (Note the extra exclamation mark.)\n";
+
+	tbl["target_dead"] = "You killed %s.\n";
+	tbl["player_dead"] = "You were slain by %s.\n";
 
 	tbl["attackable"] = "Attackable Enemies:\n";
 	tbl["enemy_item"] = "  - %s\n";
@@ -50,8 +64,58 @@ static void setup_lang(Level& lvl)
 	lvl.initmessages(tbl);
 }
 
+static void print_intro()
+{
+	std::cout <<
+		"|| After your travels through the vageuly ominous Forest of Tolkien, you\n"
+		"|| seek rest at the nearest town. While there, you hear rumors of townsfolk\n"
+		"|| going missing near a ruined and, allegedly, cursed castle. More\n"
+		"|| importantly, however, the lost relic you've been hunting is also\n"
+		"|| reported to be in the area (at least according to the poor sap you\n"
+		"|| left hanging from a tree in the forest).\n\n";
+}
 
-/*
- * TODO: this is where we're going to establish the command table and
- * player objects. The entry point will invoke level-start functions.
- */
+void run_level0(Character *player)
+{
+	Level intro(
+			"Castle Curses",
+			"Rumors of townsfolk going missing near a cursed castle have spread.",
+			1);
+	setup_lang(intro);
+
+	print_intro();
+
+	// make a ghoul
+	Weapon claws("Claws", 50, 15);
+	NPCharacter ghoul("ghoul", claws, 165, 10);
+	ghoul.setweapon(claws);
+
+	intro.addchar(player);
+	intro.addchar(&ghoul);
+
+	// commands
+	Help help("help");
+	Attack atk("attack");
+	Look look("look");
+	Exit exit("exit");
+
+	CmdTable ctable;
+	ctable["help"] = &help;
+	ctable["attack"] = &atk;
+	ctable["look"] = &look;
+	ctable["exit"] = &exit;
+	ctable["quit"] = &exit; // alias for exit
+
+	do {
+		std::printf(intro.getmessage("prompt").c_str(), "Introduction");
+		std::cout << std::flush;
+
+		std::string line;
+		if (std::getline(std::cin, line)) {
+			Command *c;
+			if ((c = parsecmd(line, ctable)) != NULL) {
+				c->dispatch(player, &intro);
+			}
+		}
+	} while (std::cin.good() && !player->is_dead());
+}

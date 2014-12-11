@@ -10,6 +10,8 @@
 NPCharacter::NPCharacter() : Character()
 {
 	type = NPC;
+	min = 5;
+	max = 10;
 }
 
 NPCharacter::NPCharacter(std::string n, Weapon w, int hp, int str)
@@ -17,11 +19,12 @@ NPCharacter::NPCharacter(std::string n, Weapon w, int hp, int str)
 {
 	type = NPC;
 }
+NPCharacter::~NPCharacter() {}
 
-void NPCharacter::attack(Character* ch, bool retaliate)
+int NPCharacter::attack(Character* ch, bool retaliate)
 {
 	unsigned roll = rand_range(1u, 100u);
-	int dmg = 0;
+	int dmg = rand_range(min, max);
 
 	if (roll <= weap.hitrate()) {
 		ch->setflags(Character::HIT);
@@ -31,4 +34,6 @@ void NPCharacter::attack(Character* ch, bool retaliate)
 
 	if (retaliate)
 		ch->attack(this, false);
+
+	return dmg;
 }

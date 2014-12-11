@@ -21,12 +21,17 @@ class Character {
 protected:
 	std::string name;
 	Weapon weap;
+	CharType type;
 
 	// more stats in the future?
 	int hp;
 	int str;
+	int maxhp;
 
-	CharType type;
+	// damage range
+	int min;
+	int max;
+
 	unsigned state;		// bit set
 
 public:
@@ -39,16 +44,20 @@ public:
 	Character();
 	Character(std::string n, Weapon w, int hp, int str);
 
+	~Character();
+
 	friend std::ostream& operator<< (std::ostream& o, Character const& ch);
 
 	int gethp() const;
+	int getmaxhp() const;
 	unsigned getflags() const;
-	Weapon getweapon() const;
 	bool is_dead() const;
+	Weapon getweapon() const;
 	std::string getname() const;
 	CharType gettype() const;
 
 	void addhp(int amt);
+	void setmaxhp(int hp);
 	void setname(std::string& n);
 	void setweapon(Weapon w);
 	void setflags(unsigned f);
@@ -56,7 +65,7 @@ public:
 	void settype(const CharType& t);
 
 	// moves
-	virtual void attack(Character* ch, bool retaliate = true);
+	virtual int attack(Character* ch, bool retaliate = true);
 };
 
 
@@ -65,7 +74,7 @@ struct Player : public Character {
 	Player();
 	Player(std::string n, Weapon w, int hp, int str);
 
-	void attack(Character* ch, bool retaliate = true);
+	~Player();
 };
 
 
@@ -77,6 +86,8 @@ struct NPCharacter : public Character {
 	NPCharacter();
 	NPCharacter(std::string n, Weapon w, int hp, int str);
 
-	void attack(Character* ch, bool retaliate = true);
+	~NPCharacter();
+
+	int attack(Character* ch, bool retaliate = false);
 };
 #endif

@@ -15,6 +15,7 @@ static void init_errors()
 {
 	if (tbl.empty()) {
 		tbl["msg_not_found"] = "Unable to load message from language table.\n";
+		tbl["input_error"] = "Error reading input.\n";
 	}
 }
 

@@ -17,20 +17,27 @@ void Character::init()
 }
 
 /** constructors */
-Character::Character() : hp(0), str(0), state(INIT)
+Character::Character() : hp(0), str(0), min(0), max(0), state(INIT)
 {
 	init();
+	maxhp = hp;
 }
 Character::Character(std::string n, Weapon w, int hp, int str)
-	: name(n), weap(w), hp(hp), str(str), state(INIT)
+	: name(n), weap(w), hp(hp), str(str), min(0), max(0), state(INIT)
 {
 	init();
+	maxhp = hp;
 }
+Character::~Character() {}
 
 /* accessors */
 int Character::gethp() const
 {
 	return hp;
+}
+int Character::getmaxhp() const
+{
+	return maxhp;
 }
 std::string Character::getname() const
 {
@@ -57,6 +64,10 @@ CharType Character::gettype() const
 void Character::addhp(int amt)
 {
 	hp += amt;
+}
+void Character::setmaxhp(int hp)
+{
+	maxhp = hp;
 }
 void Character::setweapon(Weapon w)
 {
@@ -87,15 +98,15 @@ void Character::settype(const CharType& t)
  * @param we need to avoid a recursive chain of calls, so we pass a
  * parameter to determine when an attack sequence should end
  */
-void Character::attack(Character* ch, bool retaliate)
+int Character::attack(Character* ch, bool retaliate)
 {
 	unsigned roll = rand_range(1u, 100u);
 	unsigned critchance = 15u;
-	int dmg = 0;
+	int dmg = rand_range(min, max);
 
 	if (roll <= weap.hitrate()) {
 		ch->setflags(Character::HIT);
-		dmg = str + weap.getdmg();
+		dmg += str + weap.getdmg();
 		if (roll <= critchance) {
 			ch->setflags(Character::CRIT);
 			dmg += weap.getdmg() / 2;
@@ -105,6 +116,8 @@ void Character::attack(Character* ch, bool retaliate)
 
 	if (retaliate)
 		ch->attack(this, false);
+
+	return dmg;
 }
 
 
