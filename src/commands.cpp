@@ -62,8 +62,8 @@ struct Attack : public Command {
 		if (!args.empty()) {
 			Character *npc = lvl->getchar(args[0]);
 
-			c->setflags(0);
-			npc->setflags(0);
+			c->clearflags(c->getflags());
+			npc->clearflags(npc->getflags());
 
 			const char *pname = c->getname().c_str();
 			const char *npcname = npc->getname().c_str();
@@ -71,18 +71,18 @@ struct Attack : public Command {
 
 			int dmg = c->attack(npc);
 			std::string k = (npc->getflags() & Character::CRIT) ? "crit_target" : "attack_target";
-			printf(lvl->getmessage(k).c_str(), npcname, dmg);
+			std::printf(lvl->getmessage(k).c_str(), npcname, dmg);
 
 			// retaliatory attack
 			if (!npc->is_dead()) {
 				dmg = npc->attack(c);
-				printf(lvl->getmessage("retaliate").c_str(), npcname, dmg);
-				printf(lvl->getmessage("keep_attacking").c_str(), npcname);
+				std::printf(lvl->getmessage("retaliate").c_str(), npcname, dmg);
+				std::printf(lvl->getmessage("keep_attacking").c_str(), npcname);
 			}
 			std::cout << '\n';
 
-			printf(stats, pname, c->gethp(), c->getmaxhp());
-			printf(stats, npcname, npc->gethp(), npc->getmaxhp());
+			std::printf(stats, pname, c->gethp(), c->getmaxhp());
+			std::printf(stats, npcname, npc->gethp(), npc->getmaxhp());
 			std::cout << '\n';
 
 			if (npc->is_dead() || c->is_dead()) {
@@ -98,7 +98,7 @@ struct Attack : public Command {
 					who = lvl->getmessage("player_dead").c_str();
 					tar = pname;
 				}
-				printf(who, tar);
+				std::printf(who, tar);
 			}
 			args.clear();
 		}
@@ -121,7 +121,7 @@ struct Look : public Command {
 		lvl->resetchar();
 		while ((enemy = lvl->nextchar()) != NULL) {
 			if (enemy->gettype() == NPC)
-				printf(lvl->getmessage("enemy_item").c_str(), enemy->getname().c_str());
+				std::printf(lvl->getmessage("enemy_item").c_str(), enemy->getname().c_str());
 		}
 		args.clear();
 	};

@@ -76,7 +76,7 @@ static void setup_lang(Level& lvl)
 
 	tbl["attack_target"] = "You ATTACK %s for %d damage!\n";
 	tbl["crit_target"] = "You CRIT %s for %d damage!! (Note the extra exclamation mark.)\n";
-	tbl["keep_attacking"] = "%s is still alive! Keep using `attack' until it's dead!\n";
+	tbl["keep_attacking"] = "Target: `%s' is still alive! Keep using `attack' until it's dead!\n";
 
 	tbl["target_dead"] = "You killed %s.\n";
 	tbl["player_dead"] = "You were slain by %s.\n";
@@ -84,8 +84,8 @@ static void setup_lang(Level& lvl)
 	tbl["attackable"] = "Attackable Enemies:\n";
 	tbl["enemy_item"] = "  - %s\n";
 
-	tbl["win"] = "You won!\n";
-	tbl["lose"] = "You lost!\n";
+	tbl["win"] = "CONGLATURATION !!! YOU HAVE COMPLETED GREAT GAME.";
+	tbl["lose"] = "Bill Paxton: Game Over, man! GAME OVER!";
 
 	tbl["prompt"] = "%s> ";
 
@@ -100,18 +100,26 @@ static void print_intro()
 		"|| going missing near a ruined and, allegedly, cursed castle. More\n"
 		"|| importantly, however, the lost relic you've been hunting is also\n"
 		"|| reported to be in the area (at least according to the poor sap you\n"
-		"|| left hanging from a tree in the forest).\n\n";
+		"|| left hanging from a tree in the forest). The air chills your skin as\n"
+		"|| you make for the castle.\n\n";
 }
 
+/*
+ * setup level: initialize weapons, npc's, players, and the language
+ * table.
+ */
 void run_level0(Character *player)
 {
 	Level intro(
-			"Castle Curses",
-			"Rumors of townsfolk going missing near a cursed castle have spread.",
-			1);
+			"Introduction Level", // level name
+			"Rumors of townsfolk going missing near a cursed castle have spread.", // level summary
+			1 // level ID
+			);
+
 	setup_lang(intro);
 
 	std::printf(intro.getmessage("welcome").c_str(), intro.getname().c_str());
+
 	print_intro();
 
 	// make a ghoul
@@ -119,10 +127,11 @@ void run_level0(Character *player)
 	NPCharacter ghoul("ghoul", claws, 165, 10);
 	ghoul.setweapon(claws);
 
+	// add characters to level
 	intro.addchar(player);
 	intro.addchar(&ghoul);
 
-	// commands
+	// commands needed
 	Help help("help");
 	Attack atk("attack");
 	Look look("look");
@@ -133,19 +142,24 @@ void run_level0(Character *player)
 	ctable["attack"] = &atk;
 	ctable["look"] = &look;
 	ctable["exit"] = &exit;
-	ctable["quit"] = &exit; // alias for exit
+	ctable["quit"] = &exit; // alias
 
 	help.dispatch(player, &intro);
 	do {
-		std::printf(intro.getmessage("prompt").c_str(), "Introduction");
+		std::printf(intro.getmessage("prompt").c_str(), intro.getname().c_str());
 		std::cout << std::flush;
 
 		std::string line;
 		if (std::getline(std::cin, line)) {
 			Command *c;
-			if ((c = parsecmd(line, ctable)) != NULL) {
+			if ((c = parsecmd(line, ctable)) != NULL)
 				c->dispatch(player, &intro);
-			}
 		}
 	} while (std::cin.good() && !intro.is_gameover());
+
+	// result of game
+	std::cout
+		<< "\n\n >>> "
+		<< intro.getmessage(intro.player_wins() ? "win" : "lose")
+		<< " <<<\n";
 }

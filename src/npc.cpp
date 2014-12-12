@@ -38,6 +38,8 @@ NPCharacter::NPCharacter(std::string n, Weapon w, int hp, int str)
 	: Character(n, w, hp, str)
 {
 	type = NPC;
+	min = 5;
+	max = 10;
 }
 
 int NPCharacter::attack(Character* ch)

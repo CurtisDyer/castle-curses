@@ -100,7 +100,7 @@ void Character::setflags(unsigned f)
 }
 void Character::clearflags(unsigned f)
 {
-	state &= ~f;
+	state ^= f;
 }
 void Character::setname(std::string& n)
 {

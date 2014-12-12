@@ -64,13 +64,6 @@ int main()
 				p.setweapon(sword);
 
 				run_level0(&p);
-
-				if (p.is_dead()) {
-					std::cout << "\nGame Over, man! GAME OVER!\n";
-				}
-				else {
-					std::cout << "\nCONGLATURATION !!! YOU HAVE COMPLETED GREAT GAME.\n";
-				}
 			}
 			else {
 				errormsg("input_error");

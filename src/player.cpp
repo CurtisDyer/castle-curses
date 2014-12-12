@@ -33,11 +33,15 @@ Player::Player() : Character()
 	type = PLAYER;
 
 	// basic default attack range
-	min = 10;
-	max = 20;
+	min = 15;
+	max = 25;
 }
 Player::Player(std::string n, Weapon w, int hp, int str)
 	: Character(n, w, hp, str)
 {
 	type = PLAYER;
+
+	// basic default attack range
+	min = 15;
+	max = 25;
 }
