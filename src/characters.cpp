@@ -132,6 +132,9 @@ int Character::attack(Character* ch)
 		}
 		ch->addhp(-dmg);
 	}
+	else {
+		dmg = 0;
+	}
 
 	return dmg;
 }

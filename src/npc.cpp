@@ -50,6 +50,9 @@ int NPCharacter::attack(Character* ch)
 		dmg = str + weap.getdmg();
 		ch->addhp(-dmg);
 	}
+	else {
+		dmg = 0;
+	}
 
 	return dmg;
 }
