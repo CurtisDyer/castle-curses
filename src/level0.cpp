@@ -1,5 +1,26 @@
 /*
  * level0.cpp - the first (and only) level!
+ *
+ * This is a minimal text-based game whose purpose is to demonstrate
+ * modular programming.
+ *
+ * Copyright (C) 2014  Curtis Dyer
+ *
+ * This program is free software: you can redistribute it and/or
+ * modify
+ * it under the terms of the GNU General Public License as published
+ * by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 #include <iostream>
@@ -18,7 +39,7 @@
 
 static void setup_lang(Level& lvl)
 {
-	StringTable tbl;
+	static StringTable tbl;
 	tbl["help"] =
 		"Here are the available commands. Arguments with <angle> brackets are\n"
 		"mandatory, while arguments with [square] brackets are optional.\n\n"
@@ -28,6 +49,8 @@ static void setup_lang(Level& lvl)
 		" - look [target]    without a [target], look around. Otherwise examine\n"
 		"                    the [target] more closely.\n"
 		" - exit             exit the game.\n";
+
+	tbl["welcome"] = "Welcome to: ``%s!'' The level begins now!\n";
 
 	tbl["default"] =
 		"After forcing the rotted, once-elaborate door ajar, you step through\n"
@@ -71,7 +94,7 @@ static void setup_lang(Level& lvl)
 
 static void print_intro()
 {
-	std::cout <<
+	std::cout << "\n\n"
 		"|| After your travels through the vageuly ominous Forest of Tolkien, you\n"
 		"|| seek rest at the nearest town. While there, you hear rumors of townsfolk\n"
 		"|| going missing near a ruined and, allegedly, cursed castle. More\n"
@@ -88,6 +111,7 @@ void run_level0(Character *player)
 			1);
 	setup_lang(intro);
 
+	std::printf(intro.getmessage("welcome").c_str(), intro.getname().c_str());
 	print_intro();
 
 	// make a ghoul
