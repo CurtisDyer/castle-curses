@@ -28,8 +28,8 @@
 
 class Weapon {
 	std::string name;
-	unsigned hit;
 
+	unsigned hit;
 	int dmg;
 
 public:

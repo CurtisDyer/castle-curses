@@ -33,7 +33,6 @@
 
 enum CharType { PLAYER, NPC };
 
-
 class Character {
 	void init();
 
@@ -54,17 +53,34 @@ protected:
 	unsigned state;		// bit set
 
 public:
-	// option flags
+	/** initial state */
 	static const unsigned INIT	= 0u;
+	/** character was hit */
 	static const unsigned HIT	= 1 << 0u;
+	/** character was critically hit */
 	static const unsigned CRIT	= 1 << 1u;
+	/** character missed */
 	static const unsigned MISS	= 1 << 2u;
 
 	Character();
+
+	/**
+	 * create character with name, weapon, HP, and strength
+	 * @param name
+	 * @param weapon
+	 * @param health points
+	 * @param strength
+	 */
 	Character(std::string n, Weapon w, int hp, int str);
 
 	virtual ~Character();
 
+	/**
+	 * Output stream behavior for our Character objects
+	 * @param output stream
+	 * @param a Character object (automatically string-ifies to name)
+	 * @return the output stream passed
+	 */
 	friend std::ostream& operator<< (std::ostream& o, Character const& ch);
 
 	int gethp() const;
@@ -83,7 +99,11 @@ public:
 	void clearflags(unsigned f);
 	void settype(const CharType& t);
 
-	// moves
+	/**
+	 * attack a target character
+	 * @param the target character
+	 * @return the amount of damage dealt
+	 */
 	virtual int attack(Character* ch);
 };
 

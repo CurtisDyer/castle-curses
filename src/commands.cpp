@@ -60,8 +60,8 @@ struct Attack : public Command {
 		if (!args.empty()) {
 			Character *npc = lvl->getchar(args[0]);
 
-			c->clearflags(c->getflags());
-			npc->clearflags(npc->getflags());
+			c->setflags(Character::INIT);
+			npc->setflags(Character::INIT);
 
 			const char *pname = c->getname().c_str();
 			const char *npcname = npc->getname().c_str();

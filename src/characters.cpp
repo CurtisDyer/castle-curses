@@ -35,7 +35,6 @@ void Character::init()
 	srand(time(NULL));
 }
 
-/** constructors */
 Character::Character() : hp(0), str(0), min(0), max(0), state(INIT)
 {
 	init();
@@ -49,7 +48,6 @@ Character::Character(std::string n, Weapon w, int hp, int str)
 }
 Character::~Character() {}
 
-/* accessors */
 int Character::gethp() const
 {
 	return hp;
@@ -79,7 +77,6 @@ CharType Character::gettype() const
 	return type;
 }
 
-/* mutators */
 void Character::addhp(int amt)
 {
 	hp += amt;
@@ -94,11 +91,11 @@ void Character::setweapon(Weapon w)
 }
 void Character::setflags(unsigned f)
 {
-	state |= f;
+	state = f;
 }
 void Character::clearflags(unsigned f)
 {
-	state ^= f;
+	state &= ~f;
 }
 void Character::setname(std::string& n)
 {
@@ -110,13 +107,6 @@ void Character::settype(const CharType& t)
 }
 
 
-/**
- * attack a target character
- *
- * @param the target
- * @param we need to avoid a recursive chain of calls, so we pass a
- * parameter to determine when an attack sequence should end
- */
 int Character::attack(Character* ch)
 {
 	unsigned roll = rand_range(1u, 100u);
@@ -140,7 +130,6 @@ int Character::attack(Character* ch)
 }
 
 
-/** Output stream behavior for our Character objects */
 std::ostream& operator<< (std::ostream& o, Character const& ch)
 {
 	return o << ch.name;
