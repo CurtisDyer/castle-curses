@@ -46,7 +46,6 @@ struct Help : public Command {
 	{
 		std::cout << lvl->getmessage("help") << '\n';
 	};
-
 };
 
 /*
@@ -111,10 +110,22 @@ struct Look : public Command {
 	Look(std::string n, bool argv = true, bool reqd = false) : Command(n, argv, reqd) {};
 
 	void dispatch(Character* c, Level* lvl) {
-		std::cout << lvl->getmessage(args.empty() ? "default" : args[0]);
+		std::string target = "default";
+		if (!args.empty()) {
+			double check;
+			Character *t = lvl->getchar(args[0]);
+
+			if (t != NULL) {
+				check = ((double)t->gethp() / t->getmaxhp()) * 100.0;
+				target = t->gettype() == PLAYER ? "player" : t->getname();
+				if (check <= 50.0)
+					target += "_low";
+			}
+		}
+
+		std::cout << lvl->getmessage(target);
 
 		std::cout << lvl->getmessage("attackable");
-
 		Character *enemy;
 		lvl->resetchar();
 		while ((enemy = lvl->nextchar()) != NULL) {
@@ -122,6 +133,24 @@ struct Look : public Command {
 				std::printf(lvl->getmessage("enemy_item").c_str(), enemy->getname().c_str());
 		}
 		args.clear();
+	};
+};
+
+/*
+ * Description for player's item
+ */
+struct Inspect : public Command {
+	Inspect() : Command() {};
+	Inspect(std::string n, bool argv = true, bool reqd = false) : Command(n, argv, reqd) {};
+
+	void dispatch (Character* c, Level* lvl) {
+		Character *found = c;
+
+		if (args.size() == 1)
+			found = lvl->getchar(args[0]);
+
+		Weapon w = found->getweapon();
+		std::printf(lvl->getmessage("weapon_desc").c_str(), w.getname().c_str(), w.getdesc().c_str());
 	};
 };
 

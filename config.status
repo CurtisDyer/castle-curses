@@ -431,7 +431,7 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/curtis/dev/cs1/castle-curses'
+ac_pwd='/home/curtis/dev/rpg'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -640,12 +640,12 @@ S["mkdir_p"]="$(MKDIR_P)"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]=""
-S["install_sh"]="${SHELL} /home/curtis/dev/cs1/castle-curses/install-sh"
-S["MAKEINFO"]="${SHELL} /home/curtis/dev/cs1/castle-curses/missing makeinfo"
-S["AUTOHEADER"]="${SHELL} /home/curtis/dev/cs1/castle-curses/missing autoheader"
-S["AUTOMAKE"]="${SHELL} /home/curtis/dev/cs1/castle-curses/missing automake-1.14"
-S["AUTOCONF"]="${SHELL} /home/curtis/dev/cs1/castle-curses/missing autoconf"
-S["ACLOCAL"]="${SHELL} /home/curtis/dev/cs1/castle-curses/missing aclocal-1.14"
+S["install_sh"]="${SHELL} /home/curtis/dev/rpg/install-sh"
+S["MAKEINFO"]="${SHELL} /home/curtis/dev/rpg/missing makeinfo"
+S["AUTOHEADER"]="${SHELL} /home/curtis/dev/rpg/missing autoheader"
+S["AUTOMAKE"]="${SHELL} /home/curtis/dev/rpg/missing automake-1.14"
+S["AUTOCONF"]="${SHELL} /home/curtis/dev/rpg/missing autoconf"
+S["ACLOCAL"]="${SHELL} /home/curtis/dev/rpg/missing aclocal-1.14"
 S["VERSION"]="0.0.1"
 S["PACKAGE"]="castlecurses"
 S["CYGPATH_W"]="echo"

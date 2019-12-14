@@ -46,6 +46,7 @@ static void setup_lang(Level& lvl)
 		" - attack <target>  attack the target named \"target\".\n"
 		" - look [target]    without a [target], look around. Otherwise examine\n"
 		"                    the [target] more closely.\n"
+		" - inspect [target] Inspect [target]'s weapon (or your own by default).\n"
 		" - exit             exit the game.\n";
 
 	tbl["welcome"] = "Welcome to: ``%s!'' The level begins now!\n";
@@ -69,6 +70,19 @@ static void setup_lang(Level& lvl)
 		"standing between you and a nice payday. Beyond the dilapidated\n"
 		"antechamber, you spot the fabled MacGuffin Crystal. It looks like this\n"
 		"ghoul is going to have to die.\n\n";
+	tbl["ghoul_low"] =
+		"What remains of the feted, necrotic tissue scarcely hangs upon the goul's\n"
+		"frame. Its pure instinct to feed is all that drives it to lurch forward.\n"
+		"This mindless husk shouldn't require too much more work to put down.\n\n";
+
+	tbl["player"] =
+		"Your wavy, black hair protrudes from your worn, dark green hood and brushes\n"
+		"lightly against your forehead as the gusts come and go. Your nimble frame\n"
+		"gives way to deft sword work, yet you remain nameless and blend in with the\n"
+		"crowd wherever you go.\n\n";
+	tbl["player_low"] =
+		"You've really taken a beating (and from only a mindless ghoul). Redeem yourself\n"
+		"and claim what is rightfully yours.\n";
 
 	tbl["retaliate"] = "%s ATTACKS you for %d damage!\n";
 
@@ -81,6 +95,8 @@ static void setup_lang(Level& lvl)
 
 	tbl["attackable"] = "Attackable Enemies:\n";
 	tbl["enemy_item"] = "  - %s\n";
+
+	tbl["weapon_desc"] = "== Weapon Description: %s\n%s\n\n";
 
 	tbl["win"] = "CONGLATURATION !!! YOU HAVE COMPLETED GREAT GAME.";
 	tbl["lose"] = "Bill Paxton: Game Over, man! GAME OVER!";
@@ -120,9 +136,29 @@ void run_level0(Character *player)
 
 	print_intro();
 
+
+	// weapons
+	Weapon sword(
+			"Worn Blade",
+			"Your trusted blade is well worn from battle; the steel forged in your home\n"
+			"town. It's well crafted and surprisingly light, though more heavily weighted\n"
+			"these days by your poor life decisions.\n",
+			90, 50);
+	Weapon claws(
+			"Unholy Claws",
+			"Jagged, rotting bones shouldn't be much of a threat, but there's a mysterious\n"
+			"energy flowing through the calcified remains makes them far more imposing than\n"
+			"simple bone.",
+			60, 15);
+
+	// starting player stats
+	player->setmaxhp(220);
+	player->addhp(220);
+	player->setstr(25);
+	player->setweapon(sword);
+
 	// make a ghoul
-	Weapon claws("Claws", 50, 15);
-	NPCharacter ghoul("ghoul", claws, 165, 10);
+	NPCharacter ghoul("ghoul", 165, 10);
 	ghoul.setweapon(claws);
 
 	// add characters to level
@@ -133,12 +169,14 @@ void run_level0(Character *player)
 	Help help("help");
 	Attack atk("attack");
 	Look look("look");
+	Inspect inspect("inspect");
 	Exit exit("exit");
 
 	CmdTable ctable;
 	ctable["help"] = &help;
 	ctable["attack"] = &atk;
 	ctable["look"] = &look;
+	ctable["inspect"] = &inspect;
 	ctable["exit"] = &exit;
 	ctable["quit"] = &exit; // alias
 

@@ -40,8 +40,15 @@ Character::Character() : hp(0), str(0), min(0), max(0), state(INIT)
 	init();
 	maxhp = hp;
 }
-Character::Character(std::string n, Weapon w, int hp, int str)
-	: name(n), weap(w), hp(hp), str(str), min(0), max(0), state(INIT)
+Character::Character(std::string n)
+	: name(n), hp(0), str(0), min(0), max(0), state(INIT)
+{
+	init();
+	maxhp = hp;
+}
+
+Character::Character(std::string n, int hp, int str)
+	: name(n), hp(hp), str(str), min(0), max(0), state(INIT)
 {
 	init();
 	maxhp = hp;
@@ -77,9 +84,17 @@ CharType Character::gettype() const
 	return type;
 }
 
+void Character::sethp(int amt)
+{
+	hp = amt;
+}
 void Character::addhp(int amt)
 {
 	hp += amt;
+}
+void Character::setstr(int amt)
+{
+	str = amt;
 }
 void Character::setmaxhp(int hp)
 {
@@ -101,7 +116,7 @@ void Character::setname(std::string& n)
 {
 	name = n;
 }
-void Character::settype(const CharType& t)
+void Character::settype(CharType t)
 {
 	type = t;
 }
@@ -109,14 +124,13 @@ void Character::settype(const CharType& t)
 
 int Character::attack(Character* ch)
 {
-	unsigned roll = rand_range(1u, 100u);
-	unsigned critchance = 15u;
+	unsigned critchance = 10u;
 	int dmg = rand_range(min, max);
 
-	if (roll <= weap.hitrate()) {
+	if (rand_range(1u, 100u) <= weap.hitrate()) {
 		ch->setflags(Character::HIT);
 		dmg += str + weap.getdmg();
-		if (roll <= critchance) {
+		if (rand_range(1u, 100u) <= critchance) {
 			ch->setflags(Character::CRIT);
 			dmg += weap.getdmg() / 2;
 		}

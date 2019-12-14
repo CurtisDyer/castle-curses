@@ -57,10 +57,7 @@ int main()
 			std::cout << "Name your character: " << std::flush;
 			if (std::getline(std::cin, name)) {
 				std::cout << "\n========================\n\n";
-				Weapon sword("Vorpal Sword", 90, 30);
-				Player p(name, sword, 220, 25);
-				p.setweapon(sword);
-
+				Player p(name);
 				run_level0(&p);
 			}
 			else {

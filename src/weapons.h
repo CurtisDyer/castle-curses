@@ -28,19 +28,22 @@
 
 class Weapon {
 	std::string name;
+	std::string desc;
 
 	unsigned hit;
 	int dmg;
 
 public:
 	Weapon() : hit(0u), dmg(0) {};
-	Weapon(std::string n, unsigned h, int d) : name(n), hit(h), dmg(d) {};
+	Weapon(std::string n, std::string dsc, unsigned h, int d) : name(n), desc(dsc), hit(h), dmg(d) {};
 
 	int getdmg() const { return dmg; };
 	std::string getname() const { return name; };
+	std::string getdesc() const { return desc; };
 	unsigned hitrate() const { return hit; };
 
 	void setname(std::string& n) { name = n; };
+	void setdesc(std::string& d) { desc = d; };
 	void setdmg(int d) { dmg = d; };
 };
 #endif

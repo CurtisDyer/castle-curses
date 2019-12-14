@@ -28,24 +28,30 @@
 
 NPCharacter::NPCharacter() : Character()
 {
-	type = NPC;
+	settype(NPC);
 	min = 5;
 	max = 10;
 }
-NPCharacter::NPCharacter(std::string n, Weapon w, int hp, int str)
-	: Character(n, w, hp, str)
+NPCharacter::NPCharacter(std::string n)
+	: Character(n)
 {
-	type = NPC;
+	settype(NPC);
+	min = 5;
+	max = 10;
+}
+NPCharacter::NPCharacter(std::string n, int hp, int str)
+	: Character(n, hp, str)
+{
+	settype(NPC);
 	min = 5;
 	max = 10;
 }
 
 int NPCharacter::attack(Character* ch)
 {
-	unsigned roll = rand_range(1u, 100u);
 	int dmg = rand_range(min, max);
 
-	if (roll <= weap.hitrate()) {
+	if (rand_range(1u, 100u) <= weap.hitrate()) {
 		ch->setflags(Character::HIT);
 		dmg = str + weap.getdmg();
 		ch->addhp(-dmg);

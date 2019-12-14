@@ -103,14 +103,23 @@ public:
 			c = *char_iter;
 		return c;
 	}
-	Character* getchar(std::string mob)
+	Character* getchar(const std::string& name)
 	{
-		Character *m = NULL;
-		for (size_t i = 0; m == NULL && i < chars.size(); ++i) {
-			if (mob == chars[i]->getname())
-				m = chars[i];
+		Character *c = NULL;
+		for (size_t i = 0; c == NULL && i < chars.size(); ++i) {
+			if (name == chars[i]->getname())
+				c = chars[i];
 		}
-		return m;
+		return c;
+	}
+	Weapon* getweap(const std::string& name)
+	{
+		Weapon *w = NULL;
+		for (size_t i = 0; w == NULL && i < weaps.size(); ++i) {
+			if (name == weaps[i]->getname())
+				w = weaps[i];
+		}
+		return w;
 	}
 	void resetweap() { weap_iter = weaps.begin(); };
 	void resetchar() { char_iter = chars.begin(); };

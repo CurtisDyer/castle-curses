@@ -31,7 +31,10 @@
 
 #include "weapons.h"
 
-enum CharType { PLAYER, NPC };
+enum CharType {
+	PLAYER,
+	NPC
+};
 
 class Character {
 	void init();
@@ -67,11 +70,16 @@ public:
 	/**
 	 * create character with name, weapon, HP, and strength
 	 * @param name
-	 * @param weapon
 	 * @param health points
 	 * @param strength
 	 */
-	Character(std::string n, Weapon w, int hp, int str);
+	Character(std::string n, int hp, int str);
+
+	/**
+	 * Create character with just a name
+	 * @param name character name
+	 */
+	Character(std::string n);
 
 	virtual ~Character();
 
@@ -91,13 +99,15 @@ public:
 	std::string getname() const;
 	CharType gettype() const;
 
+	void sethp(int amt);
 	void addhp(int amt);
+	void setstr(int amt);
 	void setmaxhp(int hp);
 	void setname(std::string& n);
 	void setweapon(Weapon w);
 	void setflags(unsigned f);
 	void clearflags(unsigned f);
-	void settype(const CharType& t);
+	void settype(CharType t);
 
 	/**
 	 * attack a target character
@@ -111,7 +121,8 @@ public:
 // The player character
 struct Player : public Character {
 	Player();
-	Player(std::string n, Weapon w, int hp, int str);
+	Player(std::string n);
+	Player(std::string n, int hp, int str);
 };
 
 
@@ -121,7 +132,8 @@ struct Player : public Character {
  */
 struct NPCharacter : public Character {
 	NPCharacter();
-	NPCharacter(std::string n, Weapon w, int hp, int str);
+	NPCharacter(std::string n);
+	NPCharacter(std::string n, int hp, int str);
 
 	int attack(Character* ch);
 };

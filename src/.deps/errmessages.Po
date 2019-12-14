@@ -1,256 +1,252 @@
-errmessages.o: errmessages.cpp \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/cstdio \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/c++config.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/os_defines.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/cpu_defines.h \
- /usr/include/stdio.h /usr/include/_ansi.h /usr/include/newlib.h \
- /usr/include/sys/config.h /usr/include/machine/ieeefp.h \
- /usr/include/sys/features.h /usr/include/cygwin/config.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include-fixed/sys/cdefs.h \
- /usr/include/machine/_default_types.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/stddef.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/stdarg.h \
- /usr/include/sys/reent.h /usr/include/_ansi.h /usr/include/sys/_types.h \
- /usr/include/machine/_types.h /usr/include/sys/lock.h \
- /usr/include/sys/types.h /usr/include/machine/types.h \
- /usr/include/cygwin/types.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/wordsize.h /usr/include/endian.h \
- /usr/include/bits/endian.h /usr/include/byteswap.h \
- /usr/include/sys/sysmacros.h /usr/include/sys/stdio.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/string \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stringfwd.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/memoryfwd.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/char_traits.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_algobase.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/functexcept.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/exception_defines.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/cpp_type_traits.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/ext/type_traits.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/ext/numeric_traits.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_pair.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/move.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/concept_check.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_iterator_base_types.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_iterator_base_funcs.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/debug/debug.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_iterator.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/postypes.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/cwchar \
- /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/allocator.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/c++allocator.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/ext/new_allocator.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/new \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/exception \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/atomic_lockfree_defines.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/localefwd.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/c++locale.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/clocale \
- /usr/include/locale.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/iosfwd \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/cctype \
- /usr/include/ctype.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/ostream_insert.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/cxxabi_forced.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_function.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/backward/binders.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/range_access.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/basic_string.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/ext/atomicity.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/gthr.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/gthr-default.h \
- /usr/include/pthread.h /usr/include/signal.h /usr/include/sys/signal.h \
- /usr/include/cygwin/signal.h /usr/include/sched.h \
- /usr/include/sys/sched.h /usr/include/time.h /usr/include/machine/time.h \
- /usr/include/cygwin/time.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/atomic_word.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/basic_string.tcc \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/cstdarg messages.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/map \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_tree.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_map.h \
- /usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_multimap.h \
+errmessages.o: errmessages.cpp /usr/include/stdc-predef.h \
+ /usr/include/c++/5/cstdio \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/os_defines.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/cpu_defines.h \
+ /usr/include/stdio.h /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h \
+ /usr/include/_G_config.h /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/sys_errlist.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/5/string \
+ /usr/include/c++/5/bits/stringfwd.h /usr/include/c++/5/bits/memoryfwd.h \
+ /usr/include/c++/5/bits/char_traits.h \
+ /usr/include/c++/5/bits/stl_algobase.h \
+ /usr/include/c++/5/bits/functexcept.h \
+ /usr/include/c++/5/bits/exception_defines.h \
+ /usr/include/c++/5/bits/cpp_type_traits.h \
+ /usr/include/c++/5/ext/type_traits.h \
+ /usr/include/c++/5/ext/numeric_traits.h \
+ /usr/include/c++/5/bits/stl_pair.h /usr/include/c++/5/bits/move.h \
+ /usr/include/c++/5/bits/concept_check.h \
+ /usr/include/c++/5/bits/stl_iterator_base_types.h \
+ /usr/include/c++/5/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/5/debug/debug.h /usr/include/c++/5/bits/stl_iterator.h \
+ /usr/include/c++/5/bits/ptr_traits.h \
+ /usr/include/c++/5/bits/predefined_ops.h \
+ /usr/include/c++/5/bits/postypes.h /usr/include/c++/5/cwchar \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h /usr/include/xlocale.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar2.h \
+ /usr/include/c++/5/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/c++allocator.h \
+ /usr/include/c++/5/ext/new_allocator.h /usr/include/c++/5/new \
+ /usr/include/c++/5/exception \
+ /usr/include/c++/5/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/5/bits/localefwd.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/c++locale.h \
+ /usr/include/c++/5/clocale /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/5/iosfwd \
+ /usr/include/c++/5/cctype /usr/include/ctype.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
+ /usr/include/c++/5/bits/ostream_insert.h \
+ /usr/include/c++/5/bits/cxxabi_forced.h \
+ /usr/include/c++/5/bits/stl_function.h \
+ /usr/include/c++/5/backward/binders.h \
+ /usr/include/c++/5/bits/range_access.h \
+ /usr/include/c++/5/bits/basic_string.h \
+ /usr/include/c++/5/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/gthr.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/c++/5/bits/atomic_word.h \
+ /usr/include/c++/5/ext/alloc_traits.h \
+ /usr/include/c++/5/bits/basic_string.tcc /usr/include/c++/5/cstdarg \
+ messages.h /usr/include/c++/5/map /usr/include/c++/5/bits/stl_tree.h \
+ /usr/include/c++/5/bits/stl_map.h /usr/include/c++/5/bits/stl_multimap.h \
  errmessages.h
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/cstdio:
+/usr/include/stdc-predef.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/c++config.h:
+/usr/include/c++/5/cstdio:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/os_defines.h:
+/usr/include/x86_64-linux-gnu/c++/5/bits/c++config.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/cpu_defines.h:
+/usr/include/x86_64-linux-gnu/c++/5/bits/os_defines.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/cpu_defines.h:
 
 /usr/include/stdio.h:
 
-/usr/include/_ansi.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
 
-/usr/include/newlib.h:
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
-/usr/include/sys/config.h:
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-/usr/include/machine/ieeefp.h:
+/usr/include/libio.h:
 
-/usr/include/sys/features.h:
-
-/usr/include/cygwin/config.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include-fixed/sys/cdefs.h:
-
-/usr/include/machine/_default_types.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/stddef.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/stdarg.h:
-
-/usr/include/sys/reent.h:
-
-/usr/include/_ansi.h:
-
-/usr/include/sys/_types.h:
-
-/usr/include/machine/_types.h:
-
-/usr/include/sys/lock.h:
-
-/usr/include/sys/types.h:
-
-/usr/include/machine/types.h:
-
-/usr/include/cygwin/types.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/bits/wordsize.h:
-
-/usr/include/endian.h:
-
-/usr/include/bits/endian.h:
-
-/usr/include/byteswap.h:
-
-/usr/include/sys/sysmacros.h:
-
-/usr/include/sys/stdio.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/string:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stringfwd.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/memoryfwd.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/char_traits.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_algobase.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/functexcept.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/exception_defines.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/cpp_type_traits.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/ext/type_traits.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/ext/numeric_traits.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_pair.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/move.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/concept_check.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_iterator_base_types.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_iterator_base_funcs.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/debug/debug.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_iterator.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/postypes.h:
-
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/cwchar:
+/usr/include/_G_config.h:
 
 /usr/include/wchar.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/allocator.h:
+/usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/c++allocator.h:
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/ext/new_allocator.h:
+/usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/new:
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/exception:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/atomic_lockfree_defines.h:
+/usr/include/c++/5/string:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/localefwd.h:
+/usr/include/c++/5/bits/stringfwd.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/c++locale.h:
+/usr/include/c++/5/bits/memoryfwd.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/clocale:
+/usr/include/c++/5/bits/char_traits.h:
+
+/usr/include/c++/5/bits/stl_algobase.h:
+
+/usr/include/c++/5/bits/functexcept.h:
+
+/usr/include/c++/5/bits/exception_defines.h:
+
+/usr/include/c++/5/bits/cpp_type_traits.h:
+
+/usr/include/c++/5/ext/type_traits.h:
+
+/usr/include/c++/5/ext/numeric_traits.h:
+
+/usr/include/c++/5/bits/stl_pair.h:
+
+/usr/include/c++/5/bits/move.h:
+
+/usr/include/c++/5/bits/concept_check.h:
+
+/usr/include/c++/5/bits/stl_iterator_base_types.h:
+
+/usr/include/c++/5/bits/stl_iterator_base_funcs.h:
+
+/usr/include/c++/5/debug/debug.h:
+
+/usr/include/c++/5/bits/stl_iterator.h:
+
+/usr/include/c++/5/bits/ptr_traits.h:
+
+/usr/include/c++/5/bits/predefined_ops.h:
+
+/usr/include/c++/5/bits/postypes.h:
+
+/usr/include/c++/5/cwchar:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
+
+/usr/include/c++/5/bits/allocator.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/c++allocator.h:
+
+/usr/include/c++/5/ext/new_allocator.h:
+
+/usr/include/c++/5/new:
+
+/usr/include/c++/5/exception:
+
+/usr/include/c++/5/bits/atomic_lockfree_defines.h:
+
+/usr/include/c++/5/bits/localefwd.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/c++locale.h:
+
+/usr/include/c++/5/clocale:
 
 /usr/include/locale.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/iosfwd:
+/usr/include/x86_64-linux-gnu/bits/locale.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/cctype:
+/usr/include/c++/5/iosfwd:
+
+/usr/include/c++/5/cctype:
 
 /usr/include/ctype.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/ostream_insert.h:
+/usr/include/endian.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/cxxabi_forced.h:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_function.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/backward/binders.h:
+/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/range_access.h:
+/usr/include/c++/5/bits/ostream_insert.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/basic_string.h:
+/usr/include/c++/5/bits/cxxabi_forced.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/ext/atomicity.h:
+/usr/include/c++/5/bits/stl_function.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/gthr.h:
+/usr/include/c++/5/backward/binders.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/gthr-default.h:
+/usr/include/c++/5/bits/range_access.h:
+
+/usr/include/c++/5/bits/basic_string.h:
+
+/usr/include/c++/5/ext/atomicity.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/gthr.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/gthr-default.h:
 
 /usr/include/pthread.h:
 
-/usr/include/signal.h:
-
-/usr/include/sys/signal.h:
-
-/usr/include/cygwin/signal.h:
-
 /usr/include/sched.h:
-
-/usr/include/sys/sched.h:
 
 /usr/include/time.h:
 
-/usr/include/machine/time.h:
+/usr/include/x86_64-linux-gnu/bits/sched.h:
 
-/usr/include/cygwin/time.h:
+/usr/include/x86_64-linux-gnu/bits/time.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/x86_64-pc-cygwin/bits/atomic_word.h:
+/usr/include/x86_64-linux-gnu/bits/timex.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/basic_string.tcc:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/cstdarg:
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/x86_64-linux-gnu/c++/5/bits/atomic_word.h:
+
+/usr/include/c++/5/ext/alloc_traits.h:
+
+/usr/include/c++/5/bits/basic_string.tcc:
+
+/usr/include/c++/5/cstdarg:
 
 messages.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/map:
+/usr/include/c++/5/map:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_tree.h:
+/usr/include/c++/5/bits/stl_tree.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_map.h:
+/usr/include/c++/5/bits/stl_map.h:
 
-/usr/lib/gcc/x86_64-pc-cygwin/4.8.3/include/c++/bits/stl_multimap.h:
+/usr/include/c++/5/bits/stl_multimap.h:
 
 errmessages.h:
